@@ -3,33 +3,32 @@
 ## 1. 環境
 
 今回は仮想環境は使用しません。
-各環境のVerは以下の通りとなっています。
+各環境のVersionは以下の通りとなっています。
 
-
-* さくらVPS Ubuntu 16.04
+* さくらVPS ubuntu16.04
 * Apache2.4
 * Python3.52
 * Flask1.02
 
-
 ## 2.開発/実行に必要なパッケージのインストール
 
 ### 2-1. パッケージ追加
-1. 「sudo apt-get update」
-2. 「sudo apt-get upgrade」
+1. 「sudo apt-get update」実行。
+2. 「sudo apt-get upgrade」実行。
 3. Pythonモジュールの構築に必須なファイル、ライブラリが含まれたPython3.6追加「sudo apt-get install python3-dev」。
 4. pip3のインストール「sudo apt-get install python3-pip」
-5. Apache2追加「sudo aot-get install apache2」実行。
-5. Apache2追加「sudo aot-get install apache2-dev」実行。
-5. 「sudo apt-get install firewalld」実行。
-6. GCC追加「sudo apt-get install gcc」実行。
-7. XMLパーサ追加「sudo apt-get install libexpat1-dev」実行。
+5. Apache2インストール「sudo apt-get install apache2 apache2-dev」実行。
+6. firewallインストール「sudo apt-get install firewalld」実行。
+7. GCCインストール「sudo apt-get install gcc」実行。
+8. XMLパーサインストール「sudo apt-get install libexpat1-dev」実行。
 
 ### 2-2. pipパッケージ追加
-1. 「pip3 install --upgrade pip」実行。
+1. pip3のアップデート「sudo pip3 install --upgrade pip」実行。
 2. Flask追加「sudo pip3 install flask」
-3. 「pip3 install mod_wsgi」実行。
-3. 「pip3 install mod_wsgi-httpd」実行。
+3. 「sudo pip3 install mod_wsgi」実行。
+4. 「sudo pip3 install mod_wsgi-httpd」実行。
+
+※ mod_wsgi-httpdはインストールに時間がかかるので注意。
 
 ## 3. Applicationファイルと設定ファイルの作成
 
@@ -52,7 +51,7 @@ if __name__ == "__main__":
 ```
 
 ### 3-2. WSGIとの連携ファイルの作成
-1. wsgiとのアダプターファイル「adapter.py」をflaskディレクトリ直下に作成する。ファイルの中身は以下とする。
+1. wsgiとのアダプターファイル「adapter.wsgi」をflaskディレクトリ直下に作成する。ファイルの中身は以下とする。
 ```
 
 # coding: utf-8
@@ -63,8 +62,20 @@ from app import app as application
 
 ```
 
-### 3-3. Apache2の設定ファイルの作成
-1. ディレクトリ「/etc/apache2/site-avaialble」直下に「flask.conf」を作成。ファイルの中身は以下とする。
+### 3-3.Apache2の設定ファイル（apache2.conf）への追記
+1. ディレクトリ「/etc/apache2」直下のapache2.conf内に以下の内容を追記する。
+
+```
+<Directory /var/www/flask/>
+        Options Indexes FollowSymLinks
+        AllowOverride None
+        Require all granted
+</Directory>
+
+```
+
+### 3-4. Apache2の設定ファイルの作成
+1. ディレクトリ「/etc/apache2/site-available」直下に「flask.conf」を作成。ファイルの中身は以下とする。
 
 ```
 LoadModule wsgi_module /usr/local/lib/python3.5/dist-packages/mod_wsgi/server/mod_wsgi-py35.cpython-35m-x86_64-linux-gnu.so
@@ -88,21 +99,9 @@ Require all granted
 * 6行目：「/」と「wsgi設定ファイル」の場所を記載する。 ※ 本例では、「/var/www/flask/adapter.wsgi」
 * 9行目：「Flaskのプロジェクトディレクトリを指定」。
 
-#### .confファイルを読み込ませる
-a2dissite "sites-enable内にある.confファイル名"
-a2ensite "sites-available内にある.confファイル名"
-
-
-### apache2.confに追記する
-
-```
-<Directory /var/www/flask/>
-        Options Indexes FollowSymLinks
-        AllowOverride None
-        Require all granted
-</Directory>
-
-```
+### 3-5.作成したflask.confファイルをApache2に読み込ませる
+1. 「sudo a2dissite sites-enable flask.conf」実行。
+2. 「sudo a2ensite sites-enable flask.conf」実行。
 
 ## 4.WEBサーバの実行とFirewallの設定
 
