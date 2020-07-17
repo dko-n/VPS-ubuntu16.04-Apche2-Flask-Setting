@@ -114,7 +114,8 @@ Require all granted
 3. Firewallの再起動「`systemctl restart firewalld`」実行。
 
 ### 4-3. 稼働のテスト
-1. ブラウザで「http://xxx.xxx.xxx.xxx（VPSのアドレス）」にアクセスする。「Hello, Worldだよ(*˘︶˘*).｡.:*♡」と表示されればOK！。
+1. ブラウザで[http://xxx.xxx.xxx.xxx](http://xxx.xxx.xxx.xxx)（VPSのアドレス）にアクセスする。
+2. Hello, Worldだよ(*˘︶˘*).｡.:*♡と表示されればOK！。
 
 ## 参考文献
 * [Flask公式](http://flask.pocoo.org/docs/1.0/)
