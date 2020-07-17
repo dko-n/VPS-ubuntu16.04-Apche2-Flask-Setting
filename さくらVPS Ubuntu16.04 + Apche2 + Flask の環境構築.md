@@ -1,4 +1,4 @@
-# Ubuntu16.04におけるFlask開発環境の設定
+# 😛Ubuntu16.04におけるFlask開発環境の設定😛
 
 ## 1. 環境
 
@@ -13,20 +13,20 @@
 ## 2.開発/実行に必要なパッケージのインストール
 
 ### 2-1. パッケージ追加
-1. 「sudo apt-get update」実行。
-2. 「sudo apt-get upgrade」実行。
+1. 「`sudo apt-get update`」実行。
+2. 「`sudo apt-get upgrade`」実行。
 3. Pythonモジュールの構築に必須なファイル、ライブラリが含まれたPython3.6追加「sudo apt-get install python3-dev」。
-4. pip3のインストール「sudo apt-get install python3-pip」
-5. Apache2インストール「sudo apt-get install apache2 apache2-dev」実行。
-6. firewallインストール「sudo apt-get install firewalld」実行。
-7. GCCインストール「sudo apt-get install gcc」実行。
-8. XMLパーサインストール「sudo apt-get install libexpat1-dev」実行。
+4. pip3のインストール「`sudo apt-get install python3-pip`」
+5. Apache2インストール「`sudo apt-get install apache2 apache2-dev`」実行。
+6. firewallインストール「`sudo apt-get install firewalld`」実行。
+7. GCCインストール「`sudo apt-get install gcc`」実行。
+8. XMLパーサインストール「`sudo apt-get install libexpat1-dev`」実行。
 
 ### 2-2. pipパッケージ追加
-1. pip3のアップデート「sudo pip3 install --upgrade pip」実行。
-2. Flask追加「sudo pip3 install flask」
-3. 「sudo pip3 install mod_wsgi」実行。
-4. 「sudo pip3 install mod_wsgi-httpd」実行。
+1. pip3のアップデート「`sudo pip3 install --upgrade pip`」実行。
+2. Flask追加「`sudo pip3 install flask`」
+3. 「`sudo pip3 install mod_wsgi`」実行。
+4. 「`sudo pip3 install mod_wsgi-httpd`」実行。
 
 ※ mod_wsgi-httpdはインストールに時間がかかるので注意。
 
@@ -63,7 +63,7 @@ from app import app as application
 ```
 
 ### 3-3.Apache2の設定ファイル（apache2.conf）への追記
-1. ディレクトリ「/etc/apache2」直下のapache2.conf内に以下の内容を追記する。
+1. ディレクトリ「/etc/apache2」直下のapache2.conf内に以下の内容を**追記**する。
 
 ```
 <Directory /var/www/flask/>
@@ -100,18 +100,18 @@ Require all granted
 * 9行目：「Flaskのプロジェクトディレクトリを指定」。
 
 ### 3-5.作成したflask.confファイルをApache2に読み込ませる
-1. 「sudo a2dissite sites-enable flask.conf」実行。
-2. 「sudo a2ensite sites-enable flask.conf」実行。
+1. 「`sudo a2dissite sites-enable flask.conf`」実行。
+2. 「`sudo a2ensite sites-enable flask.conf`」実行。
 
 ## 4.WEBサーバの実行とFirewallの設定
 
 ### 4-1. Apache2の起動
-1. 「systemctl start apache2」実行。
+1. 「`systemctl start apache2`」実行。
 
 ### 4-2. Firewallの設定
-1. http通信の通過設定「firewall-cmd --add-service=http --zone=public --permanent」実行。
-2. https通信の通過設定「firewall-cmd --add-service=https --zone=public --permanent」実行。
-3. Firewallの再起動「systemctl restart firewalld」実行。
+1. http通信の通過設定「`firewall-cmd --add-service=http --zone=public --permanent`」実行。
+2. https通信の通過設定「`firewall-cmd --add-service=https --zone=public --permanent`」実行。
+3. Firewallの再起動「`systemctl restart firewalld`」実行。
 
 ### 4-3. 稼働のテスト
 1. ブラウザで「http://xxx.xxx.xxx.xxx（VPSのアドレス）」にアクセスする。「Hello, Worldだよ(*˘︶˘*).｡.:*♡」と表示されればOK！。
