@@ -75,7 +75,7 @@ from app import app as application
 ```
 
 ### 3-4. Apache2の設定ファイルの作成
-1. ディレクトリ「/etc/apache2/site-available」直下に「flask.conf」を作成。ファイルの中身は以下とする。
+1. ディレクトリ「/etc/apache2/sites-available」直下に「flask.conf」を作成。ファイルの中身は以下とする。
 
 ```
 LoadModule wsgi_module /usr/local/lib/python3.5/dist-packages/mod_wsgi/server/mod_wsgi-py35.cpython-35m-x86_64-linux-gnu.so
@@ -94,7 +94,7 @@ Require all granted
 </VirtualHost>
 ```
 
-* 1行目：LoadModuleのあとに「mod_wsgi-py35.cpython-35m-x86_64-linux-gnu.so」ファイルの場所を記載する。
+* 1行目：LoadModuleのあとに「mod_wsgi-py35.cpython-35m-x86_64-linux-gnu.so」ファイルの場所を記載する。（PythonのVerによってディレクトリの名称が変わるの要確認）
 * 5行目：「python-home=」の右側はFlaskのプロジェクトディレクトリを指定。
 * 6行目：「/」と「wsgi設定ファイル」の場所を記載する。 ※ 本例では、「/var/www/flask/adapter.wsgi」
 * 9行目：「Flaskのプロジェクトディレクトリを指定」。
