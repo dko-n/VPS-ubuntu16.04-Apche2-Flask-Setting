@@ -15,7 +15,7 @@
 ### 2-1. パッケージ追加
 1. 「`sudo apt-get update`」実行。
 2. 「`sudo apt-get upgrade`」実行。
-3. Pythonモジュールの構築に必須なファイル、ライブラリが含まれたPython3.6追加「sudo apt-get install python3-dev」。
+3. Pythonモジュールの構築に必須なファイル、ライブラリが含まれたPython3.5追加「sudo apt-get install python3-dev」。
 4. pip3のインストール「`sudo apt-get install python3-pip`」
 5. Apache2インストール「`sudo apt-get install apache2 apache2-dev`」実行。
 6. firewallインストール「`sudo apt-get install firewalld`」実行。
