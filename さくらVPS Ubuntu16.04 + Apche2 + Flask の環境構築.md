@@ -100,8 +100,8 @@ Require all granted
 * 9行目：「Flaskのプロジェクトディレクトリを指定」。
 
 ### 3-5.作成したflask.confファイルをApache2に読み込ませる
-1. 「`sudo a2dissite sites-enable flask.conf`」実行。
-2. 「`sudo a2ensite sites-enable flask.conf`」実行。
+1. 「`sudo a2dissite flask.conf`」実行。
+2. 「`sudo a2ensite flask.conf`」実行。
 
 ## 4.WEBサーバの実行とFirewallの設定
 
