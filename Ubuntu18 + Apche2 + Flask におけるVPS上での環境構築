@@ -1,26 +1,26 @@
-# 😛Ubuntu16.04におけるFlask開発環境の設定😛
+# 😛Ubuntu18上でのFlask環境の設定😛
 
 ## 1. 環境
 
 今回は仮想環境は使用しません。
 各環境のVersionは以下の通りとなっています。
 
-* さくらVPS ubuntu16.04
+* AWS LightSail Ubuntu18 
 * Apache2.4
-* Python3.52
-* Flask1.02
+* Python3.6x
+* Flask1.1.1
 
 ## 2.開発/実行に必要なパッケージのインストール
 
 ### 2-1. パッケージ追加
-1. 「`sudo apt-get update`」実行。
-2. 「`sudo apt-get upgrade`」実行。
-3. Pythonモジュールの構築に必須なファイル、ライブラリが含まれたPython3.5追加「sudo apt-get install python3-dev」。
-4. pip3のインストール「`sudo apt-get install python3-pip`」
-5. Apache2インストール「`sudo apt-get install apache2 apache2-dev`」実行。
-6. firewallインストール「`sudo apt-get install firewalld`」実行。
-7. GCCインストール「`sudo apt-get install gcc`」実行。
-8. XMLパーサインストール「`sudo apt-get install libexpat1-dev`」実行。
+1. サーバのパッケージ情報を最新にする。`sudo apt-get update`コマンドをターミナル上で実行。
+2. サーバのパッケージを最新に更新する。`sudo apt-get upgrade`コマンドをターミナル上で実行。
+3. Pythonモジュールの構築に必須なファイル、ライブラリが含まれたPython3.6を追加する`sudo apt-get install python3-dev`コマンドをターミナル上で実行。
+4. pip3をインストールする。`sudo apt-get install python3-pip`コマンドをターミナル上で実行。
+5. Apache2インストールする。`sudo apt-get install apache2 apache2-dev`コマンドをターミナル上で実行。
+6. firewallインストールする。`sudo apt-get install firewalld`コマンドをターミナル上で実行。
+7. GCCをインストールする。「`sudo apt-get install gcc`コマンドをターミナル上で実行。
+8. XMLパーサをインストールする。「`sudo apt-get install libexpat1-dev`コマンドをターミナル上で実行。
 
 ### 2-2. pipパッケージ追加
 1. pip3のアップデート「`sudo pip3 install --upgrade pip`」実行。
