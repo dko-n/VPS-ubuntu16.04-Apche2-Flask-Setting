@@ -40,7 +40,7 @@ app.config.update(
  * Sessionの期限切れを防ぐために利用される。
  
 ## 3. 追加パッケージの保存場所について
-#### [pip](https://wtforms.readthedocs.io/en/2.3.x/)
+#### [pip](https://pypi.org/project/pip/)
 * pipコマンドで保存した外部ライブラリの保存場所に注意をすること。（ImportErrorの発生）
 ##### 1. ImportErrorが発生した場合
  *  Pythonインタプリタがパッケージの参照を行う場所の確認を行う。Pythonインタプリタで以下のコマンドを実行することで確認が可能。
