@@ -38,3 +38,15 @@ app.config.update(
 ##### 6. SESSION_REFRESH_EACH_REQUEST
  * すべてのレスポンスにCookie情報を送信するか設定する。（Trueの場合送信する）
  * Sessionの期限切れを防ぐために利用される。
+ 
+## 3. 追加パッケージの保存場所について
+#### [pip](https://wtforms.readthedocs.io/en/2.3.x/)
+* pipコマンドで保存した外部ライブラリの保存場所に注意をすること。（ImportErrorの発生）
+##### 1. ImportErrorが発生した場合
+ *  Pythonインタプリタがパッケージの参照を行う場所の確認を行う。Pythonインタプリタで以下のコマンドを実行することで確認が可能。
+```
+>>> import sys
+>>> sys.path
+```
+
+* ライブラリが上記で表示されたの場所に保存されていない場合、pipでの保存場所の変更や実行時にsys.pathにパスを通すなどの対策を行う。
