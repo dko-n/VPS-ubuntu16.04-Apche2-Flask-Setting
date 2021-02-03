@@ -24,13 +24,15 @@
 
 ### 2-2. pipパッケージ追加
 1. pip3自体をアップデートする。`sudo pip3 install --upgrade pip`コマンドをターミナル上で実行。
-2. Flask追加`sudo pip3 install flask`コマンドをターミナル上で実行。
-3. mod_wsgi追加。`sudo pip3 install mod_wsgi`コマンドをターミナル上で実行。
-4. mod_wsgi_httpd追加。`sudo pip3 install mod_wsgi-httpd`コマンドをターミナル上で実行。
+2. Flask追加`sudo pip3 install flask -t /usr/local/lib/python3.6/dist-packages`コマンドをターミナル上で実行。
+3. mod_wsgi追加。`sudo pip3 install mod_wsgi -t /usr/local/lib/python3.6/dist-packages`コマンドをターミナル上で実行。
+4. mod_wsgi_httpd追加。`sudo pip3 install mod_wsgi-httpd -t /usr/local/lib/python3.6/dist-packages`コマンドをターミナル上で実行。
 
 * **WSGIが実行するPythonインタプリタが参照するパッケージのインストールディレクトリに追加すること。**  
-例えば、`sudo pip3 install flask -t /usr/local/lib/python3.6/dist-packages`のようにインストール先を指定することができる。  
-* mod_wsgi-httpdはインストールに時間がかかるので注意。
+例えば、`sudo pip3 install flask -t /usr/local/lib/python3.6/dist-packages`のようにインストール先を指定することができる。
+* 基本的には「/usr/local/lib/python3.6/dist-packages」にinstallするのが吉。
+* mod_wsgi-httpdはインストールに**時間がかかる**ので注意。
+* PJにrequirements.txtファイル（PJ固有のpipライブラリ）が含まれている場合は、`sudo pip3 install -r requirements.txt -t /usr/local/lib/python3.6/dist-packages`コマンドをターミナル上で実行。
 
 ## 3. Applicationファイルと設定ファイルの作成
 
@@ -83,7 +85,7 @@ from app import app as application
 LoadModule wsgi_module /usr/local/lib/python3.6/dist-packages/mod_wsgi/server/mod_wsgi-py36.cpython-36m-x86_64-linux-gnu.so
 
 <VirtualHost *:80>
-    WSGIDaemonProcess snapmsg user=www-data group=www-data threads=5
+    WSGIDaemonProcess flask user=www-data group=www-data threads=5
     WSGIScriptAlias / /var/www/flask/adapter.wsgi
     WSGIScriptReloading On
 
@@ -101,8 +103,9 @@ LoadModule wsgi_module /usr/local/lib/python3.6/dist-packages/mod_wsgi/server/mo
 * 8行目：「Flaskのプロジェクトディレクトリを指定」。
 
 ### 3-5.作成したflask.confファイルをApache2に読み込ませる
-1. /etc/apache2/sites-availableディレクトリ上で`sudo a2dissite flask.conf`コマンドをターミナル上で実行。
-2. /etc/apache2/sites-availableディレクトリ上で`sudo a2ensite flask.conf`コマンドをターミナル上で実行。
+1. /etc/apache2/sites-availableディレクトリ上で`sudo a2dissite 000-default.conf`コマンドをターミナル上で実行。（**デフォルトのconfファイルの無効化**）
+2. /etc/apache2/sites-availableディレクトリ上で`sudo a2dissite flask.conf`コマンドをターミナル上で実行。
+3. /etc/apache2/sites-availableディレクトリ上で`sudo a2ensite flask.conf`コマンドをターミナル上で実行。
 
 ## 4.WEBサーバの実行とFirewallの設定
 
